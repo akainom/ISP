@@ -1,0 +1,14 @@
+2026/04/27 08:50:44 [INFO] client connected
+2026/04/27 08:50:44 [LOG] received: hiii haii
+2026/04/27 08:50:45 [LOG] received: hiii haii
+2026/04/27 08:50:46 [LOG] received: hiii haii
+2026/04/27 08:50:47 [LOG] received: hiii haii
+2026/04/27 08:50:48 [LOG] received: hiii haii
+2026/04/27 08:50:49 [INFO] client disconnected
+2026/04/27 08:51:17 [INFO] client connected
+2026/04/27 08:51:17 [LOG] received: hii haaii
+2026/04/27 08:51:18 [LOG] received: hii haaii
+2026/04/27 08:51:19 [LOG] received: hii haaii
+2026/04/27 08:51:20 [LOG] received: hii haaii
+2026/04/27 08:51:21 [LOG] received: hii haaii
+2026/04/27 08:51:22 [WARN] unexpected close: websocket: close 1005 (no status)

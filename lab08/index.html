@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>lab08</title>
+</head>
+<body>
+    <h1>lab08</h1>
+    <pre id="log"></pre>
+
+    <script>
+        const logElem = document.getElementById('log');
+        function log(msg) {
+            logElem.textContent += msg + '\n';
+        }
+
+        const ws = new WebSocket('ws://localhost:3000/ws');
+        let sentCount = 0;
+
+        ws.onopen = () => {
+            log('connected');
+            sendMessage();
+        };
+
+        ws.onmessage = (event) => {
+            log('received: ' + event.data);
+        };
+
+        ws.onclose = () => {
+            log('connection closed');
+        };
+
+        ws.onerror = (err) => {
+            log('[FATAL]: ' + err.message);
+        };
+
+        function sendMessage() {
+            if (sentCount >= 5) {
+                ws.close();
+                return;
+            }
+            const msg = 'hii haaii';
+            ws.send(msg);
+            log('Sent: ' + msg);
+            sentCount++;
+            setTimeout(sendMessage, 1000);
+        }
+    </script>
+</body>
+</html>
