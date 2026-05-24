@@ -1,0 +1,121 @@
+basePath: /
+definitions:
+  main.Celebrity:
+    properties:
+      fullName:
+        type: string
+      id:
+        type: integer
+      nationality:
+        type: string
+      reqPhotoPath:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: GO11 swagger
+  title: lab11
+paths:
+  /celebrities:
+    get:
+      description: returns array of celebrities
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Celebrity'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: get celebrities
+      tags:
+      - celebrities
+    post:
+      consumes:
+      - application/json
+      description: adds new celebrity
+      parameters:
+      - description: data
+        in: body
+        name: celebrity
+        required: true
+        schema:
+          $ref: '#/definitions/main.Celebrity'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Celebrity'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: create celebrity
+      tags:
+      - celebrities
+  /celebritiy/{id}:
+    delete:
+      description: returns deleted celebrity
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/main.Celebrity'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: delete celebrity
+      tags:
+      - celebrities
+    get:
+      description: returns celebrity
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Celebrity'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: get celebrity
+      tags:
+      - celebrities
+    put:
+      description: returns updated celebrity
+      parameters:
+      - description: data
+        in: body
+        name: celebrity
+        required: true
+        schema:
+          $ref: '#/definitions/main.Celebrity'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Celebrity'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: updates celebrity
+      tags:
+      - celebrities
+swagger: "2.0"

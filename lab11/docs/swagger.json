@@ -1,0 +1,185 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "GO11 swagger",
+        "title": "lab11",
+        "contact": {}
+    },
+    "basePath": "/",
+    "paths": {
+        "/celebrities": {
+            "get": {
+                "description": "returns array of celebrities",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "celebrities"
+                ],
+                "summary": "get celebrities",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Celebrity"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "adds new celebrity",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "celebrities"
+                ],
+                "summary": "create celebrity",
+                "parameters": [
+                    {
+                        "description": "data",
+                        "name": "celebrity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Celebrity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/main.Celebrity"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/celebritiy/{id}": {
+            "get": {
+                "description": "returns celebrity",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "celebrities"
+                ],
+                "summary": "get celebrity",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Celebrity"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "returns updated celebrity",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "celebrities"
+                ],
+                "summary": "updates celebrity",
+                "parameters": [
+                    {
+                        "description": "data",
+                        "name": "celebrity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Celebrity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Celebrity"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "returns deleted celebrity",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "celebrities"
+                ],
+                "summary": "delete celebrity",
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/main.Celebrity"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Celebrity": {
+            "type": "object",
+            "properties": {
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "nationality": {
+                    "type": "string"
+                },
+                "reqPhotoPath": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

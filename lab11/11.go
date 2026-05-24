@@ -9,6 +9,8 @@ import (
 	"os"
 	"strconv"
 
+	_ "lab11/docs"
+
 	"github.com/gorilla/mux"
 	_ "github.com/mattn/go-sqlite3"
 	httpSwagger "github.com/swaggo/http-swagger"
@@ -73,6 +75,7 @@ func createNewCelebrity(w http.ResponseWriter, r *http.Request) {
 	c.Id = int(id)
 
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(201)
 	json.NewEncoder(w).Encode(c)
 	log.Println("[LOG] created new id " + strconv.Itoa(c.Id))
 }
@@ -82,7 +85,7 @@ func createNewCelebrity(w http.ResponseWriter, r *http.Request) {
 // @Description  returns array of celebrities
 // @Tags         celebrities
 // @Produce      json
-// @Success      201 {object} Celebrity
+// @Success      200 {object} Celebrity
 // @Failure      500 {string} string "Internal Server Error"
 // @Router       /celebrities [get]
 func getAllCels(w http.ResponseWriter, r *http.Request) {
@@ -107,7 +110,7 @@ func getAllCels(w http.ResponseWriter, r *http.Request) {
 // @Description  returns celebrity
 // @Tags         celebrities
 // @Produce      json
-// @Success      201 {object} Celebrity
+// @Success      200 {object} Celebrity
 // @Failure      500 {string} string "Internal Server Error"
 // @Router       /celebritiy/{id} [get]
 func getCel(w http.ResponseWriter, r *http.Request) {
@@ -130,13 +133,13 @@ func getCel(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(c)
 }
 
-// getCel godoc
+// updateCel godoc
 // @Summary      updates celebrity
 // @Description  returns updated celebrity
 // @Tags         celebrities
 // @Produce      json
 // @Param        celebrity body Celebrity true "data"
-// @Success      201 {object} Celebrity
+// @Success      200 {object} Celebrity
 // @Failure      500 {string} string "Internal Server Error"
 // @Router       /celebritiy/{id} [put]
 func updateCel(w http.ResponseWriter, r *http.Request) {
@@ -156,12 +159,12 @@ func updateCel(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// getCel godoc
-// @Summary      get celebrity
-// @Description  returns celebrity
+// deleteCel godoc
+// @Summary      delete celebrity
+// @Description  returns deleted celebrity
 // @Tags         celebrities
 // @Produce      json
-// @Success      201 {object} Celebrity
+// @Success      204 {object} Celebrity
 // @Failure      500 {string} string "Internal Server Error"
 // @Router       /celebritiy/{id} [delete]
 func deleteCel(w http.ResponseWriter, r *http.Request) {
@@ -193,7 +196,7 @@ func main() {
 	r.HandleFunc("/celebrity/{id}", updateCel).Methods("PUT")
 	r.HandleFunc("/celebrity/{id}", deleteCel).Methods("DELETE")
 
-	r.HandleFunc("/swagger", httpSwagger.Handler(
+	r.PathPrefix("/swagger/").Handler(httpSwagger.Handler(
 		httpSwagger.URL("http://localhost:3000/swagger/doc.json"),
 	))
 
