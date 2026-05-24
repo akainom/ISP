@@ -1,0 +1,25 @@
+type Celebrity {
+    id: ID!
+	Fullname: String!
+	Nationality: String! 
+	ReqPhotoPath: String!
+}
+
+input NewCelebrity {
+	Fullname: String!
+	Nationality: String! 
+	ReqPhotoPath: String!	
+}
+
+type Query {
+	celebrities: [Celebrity]!
+	celebrity(id: ID): Celebrity
+}
+
+type Mutation {
+	createCelebrity(input: NewCelebrity!): Celebrity!
+
+	putCelebrity(id: ID!, input: NewCelebrity!): Celebrity!
+
+	deleteCelebrity(id: ID!): Celebrity!	
+}
